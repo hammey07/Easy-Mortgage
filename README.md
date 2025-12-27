@@ -17,8 +17,6 @@ If you are developing a production application, we recommend using TypeScript wi
 
 # Easy-Mortgage
 
-# Borrowing Calculator
-
 A simple React-based mortgage calculator for Ireland that estimates your maximum borrowing capacity based on income, deposit, and interest rates. It also shows monthly repayments, total repayment, and total interest, while respecting Central Bank lending limits.
 
 ## Features

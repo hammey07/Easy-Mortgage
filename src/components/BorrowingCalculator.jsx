@@ -7,7 +7,7 @@ const calculateLoanDetails = (
   termYears = 25,
   isFirstTimeBuyer = true
 ) => {
-  if (!income || !interestRate) return null;
+  if (!income || !interestRate || !termYears) return null;
 
   // Central Bank limits
   const incomeMultiplier = isFirstTimeBuyer ? 4 : 3.5;
@@ -38,12 +38,11 @@ export default function BorrowingCalculator() {
   // const [loan, setLoan] = useState(200000);
   const [income, setIncome] = useState("");
   const [deposit, setDeposit] = useState("");
-  // const [term, setTerm] = useState(25);
+  const [term, setTerm] = useState(30);
   const [interestRate, setInterestRate] = useState(4);
   const rates = [2.0, 2.25, 2.5, 3.0, 3.25, 3.5, 4.0, 4.25, 4.5];
 
-  const maxLoan = income * interestRate + deposit;
-  const loanDetails = calculateLoanDetails(income, deposit, interestRate);
+  const loanDetails = calculateLoanDetails(income, deposit, interestRate, term);
 
   return (
     <>
@@ -70,6 +69,18 @@ export default function BorrowingCalculator() {
               id=""
               value={deposit}
             ></input>
+            <label htmlFor="term">Term (Years)</label>
+            <select
+              className="select-term"
+              value={term}
+              onChange={(e) => setTerm(parseInt(e.target.value))}
+            >
+              {[15, 20, 25, 30].map((t) => (
+                <option key={t} value={t}>
+                  {t} years
+                </option>
+              ))}
+            </select>
             <label className="block mb-1">Select Interest Rate (%)</label>
             <div className="btn-rate-container">
               {rates.map((rate) => (
@@ -86,20 +97,6 @@ export default function BorrowingCalculator() {
             </div>
 
             <div className="max-loan">
-              {/* {maxLoan > 0 ? (
-                <div>
-                  <strong> €{maxLoan.toLocaleString("en-IE")}</strong>
-                  <p>
-                    This is only a guide. The exact amount you can borrow may
-                    also depend on your credit history, age and other financial
-                    commitments.
-                  </p>
-                </div>
-              ) : (
-                <div>
-                  <strong> Type in your details above to get started! </strong>
-                </div>
-              )} */}
               {loanDetails ? (
                 <div>
                   <p>
