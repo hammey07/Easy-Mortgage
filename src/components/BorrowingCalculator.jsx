@@ -1,33 +1,37 @@
 import { use, useState } from "react";
-
+import { Container } from "react-bootstrap";
 const calculateLoanDetails = (
   income,
   deposit,
   interestRate,
   termYears = 25,
-  isFirstTimeBuyer = true
+  isFirstTimeBuyer
 ) => {
-  if (!income || !interestRate || !termYears) return null;
+  if (!income || !interestRate || !deposit) return null;
 
-  // Central Bank limits
   const incomeMultiplier = isFirstTimeBuyer ? 4 : 3.5;
-  const maxIncomeBasedLoan = income * incomeMultiplier;
+  const MAX_LTV = 0.9;
+
+  // Income-based cap (loan only)
+  const incomeBasedMaxLoan = income * incomeMultiplier;
+
+  // Deposit-based cap (90% LTV)
+  const ltvBasedMaxLoan = (deposit / (1 - MAX_LTV)) * MAX_LTV;
+
+  // Bank will lend the LOWER of the two
+  const maxLoan = Math.min(incomeBasedMaxLoan, ltvBasedMaxLoan);
 
   const monthlyRate = interestRate / 100 / 12;
   const termMonths = termYears * 12;
 
-  // Max loan based purely on LTI limit
-  const calculatedLoan = maxIncomeBasedLoan + (deposit || 0);
-
   const monthlyRepayment =
-    (calculatedLoan * monthlyRate) /
-    (1 - Math.pow(1 + monthlyRate, -termMonths));
+    (maxLoan * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -termMonths));
 
   const totalRepayment = monthlyRepayment * termMonths;
-  const totalInterest = totalRepayment - calculatedLoan;
+  const totalInterest = totalRepayment - maxLoan;
 
   return {
-    maxLoan: Math.round(calculatedLoan),
+    maxLoan: Math.round(maxLoan),
     monthlyRepayment: Math.round(monthlyRepayment),
     totalRepayment: Math.round(totalRepayment),
     totalInterest: Math.round(totalInterest),
@@ -40,20 +44,43 @@ export default function BorrowingCalculator() {
   const [deposit, setDeposit] = useState("");
   const [term, setTerm] = useState(30);
   const [interestRate, setInterestRate] = useState(4);
+  const [mortgageType, setMortgageType] = useState("First Time Buyer");
   const rates = [2.0, 2.25, 2.5, 3.0, 3.25, 3.5, 4.0, 4.25, 4.5];
-
-  const loanDetails = calculateLoanDetails(income, deposit, interestRate, term);
+  const types = ["First Time Buyer", "Remortgage (Switcher)"];
+  const isFirstTimeBuyer = mortgageType == "First Time Buyer";
+  const loanDetails = calculateLoanDetails(
+    income,
+    deposit,
+    interestRate,
+    term,
+    isFirstTimeBuyer
+  );
 
   return (
     <>
-      <div className="mortgage-calc">
-        <div className="container">
-          <div className="calc-card">
+      <div className="section-body">
+        <div className="section-container">
+          <div className="section-header">
             <h2 className="calc-title">Mortgage Calculator</h2>
             <p className="calc-subtitle lead">
               Get an estimate of your borrowing capacity
             </p>
-            <label htmlFor="income"> Income (€)</label>
+          </div>
+          <div className="mortgage-calculator">
+            <div class="btn-mortgage-type-container">
+              {types.map((type) => (
+                <button
+                  key={type}
+                  onClick={() => setMortgageType(type)}
+                  className={`btn-mortgage-type ${
+                    mortgageType === type ? "active" : ""
+                  }`}
+                >
+                  {type}
+                </button>
+              ))}
+            </div>
+            <label htmlFor="Income"> Income (€)</label>
             <input
               onChange={(e) => setIncome(parseFloat(e.target.value))}
               type="number"
@@ -75,7 +102,7 @@ export default function BorrowingCalculator() {
               value={term}
               onChange={(e) => setTerm(parseInt(e.target.value))}
             >
-              {[15, 20, 25, 30].map((t) => (
+              {[15, 20, 25, 30, 35].map((t) => (
                 <option key={t} value={t}>
                   {t} years
                 </option>
@@ -95,12 +122,19 @@ export default function BorrowingCalculator() {
                 </button>
               ))}
             </div>
-
             <div className="max-loan">
               {loanDetails ? (
                 <div>
                   <p>
-                    <strong>Max Loan: </strong>€
+                    <strong>Property Value: </strong>€
+                    <strong>
+                      {(loanDetails.maxLoan + deposit).toLocaleString("en-IE")}
+                    </strong>
+                    * (The maximum property value you may be able to afford with
+                    your €{deposit.toLocaleString("en-IE")} deposit)
+                  </p>
+                  <p>
+                    <strong>Mortgage Amount: </strong>€
                     <strong>
                       {loanDetails.maxLoan.toLocaleString("en-IE")}
                     </strong>

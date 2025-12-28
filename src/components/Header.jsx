@@ -1,16 +1,17 @@
+import { Container } from "react-bootstrap";
 export default function Header() {
   return (
     <header>
       <div className="header-container">
-        <div className="container">
+        <Container>
           <div className="header-content">
-            <h1 className="header-title">Smart Mortgage</h1>
+            <h1 className="header-title">Easy Mortgage</h1>
             <h3 className="">
               Calculate your monthly payments and see how much you can borrow in
               minutes.
             </h3>
           </div>
-        </div>
+        </Container>
       </div>
     </header>
   );
