@@ -1,6 +1,11 @@
 import { use, useState } from "react";
 import { Container } from "react-bootstrap";
-const calculateLoanDetails = (
+import { useEffect } from "react";
+
+import { helix } from "ldrs";
+helix.register();
+
+const calculateloanResult = (
   income,
   deposit,
   interestRate,
@@ -31,6 +36,7 @@ const calculateLoanDetails = (
   const totalInterest = totalRepayment - maxLoan;
 
   return {
+    purchasePower: Math.round(maxLoan + deposit),
     maxLoan: Math.round(maxLoan),
     monthlyRepayment: Math.round(monthlyRepayment),
     totalRepayment: Math.round(totalRepayment),
@@ -39,22 +45,36 @@ const calculateLoanDetails = (
 };
 
 export default function BorrowingCalculator() {
-  // const [loan, setLoan] = useState(200000);
   const [income, setIncome] = useState("");
   const [deposit, setDeposit] = useState("");
   const [term, setTerm] = useState(30);
   const [interestRate, setInterestRate] = useState(4);
   const [mortgageType, setMortgageType] = useState("First Time Buyer");
+  const [isLoading, setIsLoading] = useState(false);
+  const [loanResult, setLoanResult] = useState(null);
+
   const rates = [2.0, 2.25, 2.5, 3.0, 3.25, 3.5, 4.0, 4.25, 4.5];
   const types = ["First Time Buyer", "Remortgage (Switcher)"];
   const isFirstTimeBuyer = mortgageType == "First Time Buyer";
-  const loanDetails = calculateLoanDetails(
-    income,
-    deposit,
-    interestRate,
-    term,
-    isFirstTimeBuyer
-  );
+
+  useEffect(() => {
+    if (!income || !deposit || !interestRate) return;
+
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      const result = calculateloanResult(
+        income,
+        deposit,
+        interestRate,
+        term,
+        isFirstTimeBuyer
+      );
+      setLoanResult(result);
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer); // cleanup if inputs change quickly
+  }, [income, deposit, interestRate, term, isFirstTimeBuyer]);
 
   return (
     <>
@@ -67,7 +87,7 @@ export default function BorrowingCalculator() {
             </p>
           </div>
           <div className="mortgage-calculator">
-            <div class="btn-mortgage-type-container">
+            <div className="btn-mortgage-type-container">
               {types.map((type) => (
                 <button
                   key={type}
@@ -82,6 +102,7 @@ export default function BorrowingCalculator() {
             </div>
             <label htmlFor="Income"> Income (€)</label>
             <div className="income-text">
+              <span>€</span>
               <input
                 onChange={(e) => setIncome(parseFloat(e.target.value))}
                 type="number"
@@ -92,6 +113,7 @@ export default function BorrowingCalculator() {
             </div>
             <label htmlFor="deposit"> Deposit (€)</label>
             <div className="deposit-text">
+              <span>€</span>
               <input
                 onChange={(e) => setDeposit(parseFloat(e.target.value))}
                 type="number"
@@ -117,6 +139,7 @@ export default function BorrowingCalculator() {
             <div className="btn-rate-container">
               {rates.map((rate) => (
                 <button
+                  tabIndex="0"
                   className={`btn-rate ${
                     interestRate === rate ? "active" : ""
                   }`}
@@ -128,13 +151,27 @@ export default function BorrowingCalculator() {
               ))}
             </div>
             <div className="result-container">
-              {loanDetails ? (
+              {isLoading && (
+                <div className="d-flex">
+                  <div className="w-50">
+                    <h1 className=""> Gossiping your salary ...</h1>
+                    <p>
+                      Almost done… if slow, the banks are arguing over interest
+                      rates again
+                    </p>
+                  </div>
+                  <div>
+                    <l-helix size="200" speed="2.5" color="white"></l-helix>
+                  </div>
+                </div>
+              )}
+              {loanResult && deposit && income && !isLoading ? (
                 <div>
                   <div className="result-block-1">
                     <div className="small mb-1"></div>
-                    <p class="mb-1">Estimated Property Value</p>
+                    <p className="mb-1">Estimated Property Value</p>
                     <h2 className="mb-0">
-                      €{(loanDetails.maxLoan + deposit).toLocaleString("en-IE")}
+                      €{loanResult.purchasePower.toLocaleString("en-IE")}
                     </h2>
                     <span className="small">
                       Based on a savings deposit of €
@@ -146,7 +183,7 @@ export default function BorrowingCalculator() {
                     <div>
                       <p class="mb-1">Estimated Monthly Repayment</p>
                       <h4>
-                        €{loanDetails.monthlyRepayment.toLocaleString("en-IE")}{" "}
+                        €{loanResult.monthlyRepayment.toLocaleString("en-IE")}{" "}
                         monthly
                       </h4>
                     </div>
@@ -154,15 +191,15 @@ export default function BorrowingCalculator() {
                   <div className="result-block-3">
                     <div>
                       Mortgage Amount — €
-                      {loanDetails.maxLoan.toLocaleString("en-IE")}
+                      {loanResult.maxLoan.toLocaleString("en-IE")}
                     </div>
                     <div>
                       Total Repayment — €
-                      {loanDetails.totalRepayment.toLocaleString("en-IE")}
+                      {loanResult.totalRepayment.toLocaleString("en-IE")}
                     </div>
                     <div>
                       Total Interest — €
-                      {loanDetails.totalInterest.toLocaleString("en-IE")}
+                      {loanResult.totalInterest.toLocaleString("en-IE")}
                     </div>
                     <hr />
                   </div>
@@ -175,9 +212,11 @@ export default function BorrowingCalculator() {
                   </p>
                 </div>
               ) : (
-                <div>
-                  <strong> Type in your details above to get started! </strong>
-                </div>
+                !isLoading && (
+                  <div>
+                    <h2>Fill in your info and get an instant estimate!</h2>
+                  </div>
+                )
               )}
             </div>
           </div>

@@ -73,26 +73,24 @@
       .deposit-text,
       .income-text {
         position: relative;
+        display: block;
 
         input {
           width: calc(100% - 10px);
           border-radius: 10px;
-          padding-top: 5px;
-          padding-bottom: 5px;
-          border: 1px solid var(--secondary);
+          border: 1px solid var(--primary);
+          background-color: var(--white);
           font-size: 20px;
+          height: 45px;
           margin-bottom: 15px;
           padding-left: 25px;
           position: relative;
         }
-
-        &::before {
-          z-index: 1;
-          content: "€";
+        span {
           position: absolute;
-          pointer-events: none;
-          left: 10px;
-          top: 6px;
+          top: 8px;
+          left: 8px;
+          z-index: 1;
           font-size: 20px;
         }
       }
@@ -158,11 +156,10 @@
           &:hover:not(.active) {
             background-color: #d2d2d2;
             color: var(--secondary);
-            top: -3px;
           }
 
           &.active {
-            background-color: var(--primary-dark);
+            background-color: var(--primary);
             color: var(--white);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
           }
@@ -170,7 +167,7 @@
       }
 
       .select-term {
-        height: 42px;
+        height: 45px;
         margin-bottom: 15px;
         display: block;
         width: 100%;
