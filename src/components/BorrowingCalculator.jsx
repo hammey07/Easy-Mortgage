@@ -81,21 +81,25 @@ export default function BorrowingCalculator() {
               ))}
             </div>
             <label htmlFor="Income"> Income (€)</label>
-            <input
-              onChange={(e) => setIncome(parseFloat(e.target.value))}
-              type="number"
-              name=""
-              id=""
-              value={income}
-            ></input>
+            <div className="income-text">
+              <input
+                onChange={(e) => setIncome(parseFloat(e.target.value))}
+                type="number"
+                name=""
+                id=""
+                value={income}
+              />
+            </div>
             <label htmlFor="deposit"> Deposit (€)</label>
-            <input
-              onChange={(e) => setDeposit(parseFloat(e.target.value))}
-              type="number"
-              name=""
-              id=""
-              value={deposit}
-            ></input>
+            <div className="deposit-text">
+              <input
+                onChange={(e) => setDeposit(parseFloat(e.target.value))}
+                type="number"
+                name=""
+                id=""
+                value={deposit}
+              />
+            </div>
             <label htmlFor="term">Term (Years)</label>
             <select
               className="select-term"
@@ -109,6 +113,7 @@ export default function BorrowingCalculator() {
               ))}
             </select>
             <label className="block mb-1">Select Interest Rate (%)</label>
+            *Rates shown are for estimation only.
             <div className="btn-rate-container">
               {rates.map((rate) => (
                 <button
@@ -122,39 +127,50 @@ export default function BorrowingCalculator() {
                 </button>
               ))}
             </div>
-            <div className="max-loan">
+            <div className="result-container">
               {loanDetails ? (
                 <div>
-                  <p>
-                    <strong>Property Value: </strong>€
-                    <strong>
-                      {(loanDetails.maxLoan + deposit).toLocaleString("en-IE")}
-                    </strong>
-                    * (The maximum property value you may be able to afford with
-                    your €{deposit.toLocaleString("en-IE")} deposit)
-                  </p>
-                  <p>
-                    <strong>Mortgage Amount: </strong>€
-                    <strong>
+                  <div className="result-block-1">
+                    <div className="small mb-1"></div>
+                    <p class="mb-1">Estimated Property Value</p>
+                    <h2 className="mb-0">
+                      €{(loanDetails.maxLoan + deposit).toLocaleString("en-IE")}
+                    </h2>
+                    <span className="small">
+                      Based on a savings deposit of €
+                      {deposit.toLocaleString("en-IE")}
+                    </span>
+                    <hr />
+                  </div>
+                  <div className="result-block-2">
+                    <div>
+                      <p class="mb-1">Estimated Monthly Repayment</p>
+                      <h4>
+                        €{loanDetails.monthlyRepayment.toLocaleString("en-IE")}{" "}
+                        monthly
+                      </h4>
+                    </div>
+                  </div>
+                  <div className="result-block-3">
+                    <div>
+                      Mortgage Amount — €
                       {loanDetails.maxLoan.toLocaleString("en-IE")}
-                    </strong>
-                  </p>
-                  <p>
-                    <strong>Monthly Repayment: </strong>€
-                    {loanDetails.monthlyRepayment.toLocaleString("en-IE")}
-                  </p>
-                  <p>
-                    <strong>Total Repayment: </strong>€
-                    {loanDetails.totalRepayment.toLocaleString("en-IE")}
-                  </p>
-                  <p>
-                    <strong>Total Interest: </strong>€
-                    {loanDetails.totalInterest.toLocaleString("en-IE")}
-                  </p>
+                    </div>
+                    <div>
+                      Total Repayment — €
+                      {loanDetails.totalRepayment.toLocaleString("en-IE")}
+                    </div>
+                    <div>
+                      Total Interest — €
+                      {loanDetails.totalInterest.toLocaleString("en-IE")}
+                    </div>
+                    <hr />
+                  </div>
                   <p>
                     <em>
-                      This is only a guide. Exact amounts may depend on your
-                      credit history, age, and other commitments.
+                      *This is an estimate only. Actual figures depend on lender
+                      criteria, credit history, age, and other financial
+                      commitments.
                     </em>
                   </p>
                 </div>
