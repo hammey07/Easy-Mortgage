@@ -11,7 +11,7 @@ const calculateloanResult = (
   deposit,
   interestRate,
   termYears = 25,
-  isFirstTimeBuyer
+  isFirstTimeBuyer,
 ) => {
   if (!income || !interestRate || !deposit) return null;
 
@@ -56,7 +56,7 @@ export default function BorrowingCalculator() {
   const [loanResult, setLoanResult] = useState(null);
   const [loadingMessage, setLoadingMessage] = useState(getRandomMessage(true));
   const [initialMessage, setInitialMessage] = useState(
-    "Fill in your info and get an instant estimate!"
+    "Fill in your info and get an instant estimate!",
   );
 
   const rates = [2.0, 2.25, 2.5, 3.0, 3.25, 3.5, 4.0, 4.25, 4.5];
@@ -72,7 +72,7 @@ export default function BorrowingCalculator() {
     setIsLoading(true);
     const isInputUnrealistic = income > 1000000 || deposit > 1000000;
     // const currentValid = income < 1000000 || deposit < 1000000;
-    const delay = isInputUnrealistic ? 3000 : 800;
+    const delay = isInputUnrealistic ? 3000 : 1500;
 
     const timer = setTimeout(() => {
       const result = calculateloanResult(
@@ -80,16 +80,16 @@ export default function BorrowingCalculator() {
         deposit,
         interestRate,
         term,
-        isFirstTimeBuyer
+        isFirstTimeBuyer,
       );
 
       if (isInputUnrealistic) {
         setInitialMessage(
-          "It looks like your current figures are a bit unrealistic for an automated quote. Don't worry, though! We may still be able to help! Get in touch for a quick chat about your mortgage journey."
+          "It looks like your current figures are a bit unrealistic for an automated quote. Don't worry, though! We may still be able to help! Get in touch for a quick chat about your mortgage journey.",
         );
       } else if (result && result.maxLoan < 50000) {
         setInitialMessage(
-          "We are unable to provide an automated estimate based on these figures. Your income or deposit may be below the standard lender requirements. Please contact us for a personalized review."
+          "We are unable to provide an automated estimate based on these figures. Your income or deposit may be below the standard lender requirements. Please contact us for a personalized review.",
         );
       } else {
         setLoanResult(result);
