@@ -1,20 +1,31 @@
 import { useState } from "react";
-import "./App.scss";
+import "./styles/global.scss";
+import "./styles/navbar.scss";
+import "./styles/button.scss";
+import "./styles/home.scss";
+import "./styles/sections.scss";
+
 import Header from "./components/Header";
-import BorrowingCalculator from "./components/BorrowingCalculator";
-import Navigation from "./components/AppNavbar";
+import Home from "./pages/Home";
+import BorrowingCalPage from "./pages/BorrowingCalc";
+import Navigation from "./components/Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// note: Navbar import from react-bootstrap unused in this file
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      {/* <Navigation /> */}
-      <Header />
+    <Router>
+      <Navigation />
       <main className="">
-        <BorrowingCalculator />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/calculator" element={<BorrowingCalPage />} />
+        </Routes>
       </main>
-    </>
+    </Router>
   );
 }
 
