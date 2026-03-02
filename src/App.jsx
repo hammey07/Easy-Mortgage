@@ -1,9 +1,5 @@
 import { useState } from "react";
-import "./styles/global.scss";
-import "./styles/navbar.scss";
-import "./styles/button.scss";
-import "./styles/home.scss";
-import "./styles/sections.scss";
+// styles are imported globally from src/index.scss -> styles/main.scss
 
 import Header from "./components/Header";
 import Home from "./pages/Home";

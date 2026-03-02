@@ -1,18 +1,8 @@
+// Navbar styles
 .navbar-custom {
   padding-top: 24px !important;
   padding-bottom: 24px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  // .navbar-brand {
-  //   transition: transform 0.2s ease;
-  //   &:hover {
-  //     transform: scale(1.05);
-  //   }
-  // }
-
-  // .brand-logo {
-  //   font-size: 202px !important;
-  //   max-height: 50px;
-  // }
 
   .brand-text {
     font-family:
@@ -58,12 +48,6 @@
 .navbar {
   color: var(--white);
   margin-top: 0 !important;
-  // background: linear-gradient(345deg, #07272d, #020e10) !important;
   background: #07272d !important;
   padding: 0;
-  // background-color: none !important;
-
-  // .brand-logo {
-  //   max-height: 70px;
-  // }
 }
