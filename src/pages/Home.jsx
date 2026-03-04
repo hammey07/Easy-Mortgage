@@ -1,7 +1,11 @@
 import card1 from "../assets/hero-happy-fam.jpg";
 import card2 from "../assets/cards-1.jpg";
+import girlInRed from "../assets/buy-to-let.jpg";
+
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
+import FeatureCard from "../components/FeatureCard";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -9,69 +13,73 @@ export default function Home() {
       <Hero />
 
       {/* CTA section */}
-      {/* <section className="py-5ection">
-        <div className="container">
-          <h2 className="">Start Your Mortgage Journey</h2>
-          <p className="lead mb-4">
-            See how much you can borrow with our easy-to-use calculator.
-          </p>
-          <Link to="/calculator" className="btn btn-primary btn-lg">
-            Calculate Now
-          </Link>
-        </div>
-      </section> */}
+      <section className="py-7 cta-section">
+        <div className="container-xxl">
+          <div className="row gx-5 align-items-center">
+            <div className="order-2 order-md-0  col-md-6">
+              <img className="post-thumbnail" src={girlInRed}></img>
+            </div>
+            <div className="order-0 order-md-2 col-md-5">
+              <div className="content-container">
+                <h1 className="alpha fs-semibold mb-3">
+                  Start Your Mortgage Journey
+                </h1>
+                <p className="lead fs-light">
+                  See how much you can borrow with our easy-to-use calculator.
+                </p>
 
-      {/* Features section */}
-      <section className="py-5 features-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-4">
-              <div className="item-card">
-                <div className="img-wrapper">
-                  <img src={card1} alt="Feature 1" className="" />
-                </div>
-                <div className="entry-content">
-                  <h5 className="text-primary">Fast Estimates</h5>
-                  <p>Get instant borrowing power estimates in seconds.</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="item-card">
-                <div className="img-wrapper">
-                  <img src={card2} alt="Feature 2" className=" img-fluid" />
-                </div>
-                <div className="entry-content">
-                  <h5 className="text-primary">Simple Inputs</h5>
-                  <hr className="w-25 border-3"></hr>
-                  <p>Enter your details in a few easy steps.</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="item-card">
-                <div className="img-wrapper">
-                  <img
-                    src="https://via.placeholder.com/150"
-                    alt="Feature 3"
-                    className=" img-fluid rounded"
-                  />
-                </div>
-                <div className="entry-content">
-                  <h5 className="text-primary">Secure &amp; Private</h5>
-                  <p>Your information stays confidential and secure.</p>
-                </div>
+                <Link to="/calculator" className="btn-circle light">
+                  Calculate Now
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Features section */}
+      <section className="py-8 features-section">
+        <div className="container-xxl">
+          <div className="row gy-5 gx-5 align-items-stretch">
+            {[
+              {
+                image: card1,
+                title: "First Time Buyer",
+                description:
+                  "Compare lenders and cashback offers with our mortgage calculator.",
+              },
+              {
+                image: card2,
+                title: "Moving House",
+                description:
+                  "Decided it’s time to move? Then it’s time to talk to us.",
+              },
+              {
+                image: card1,
+                title: "Green Mortgage",
+                description:
+                  "Get lower fixed rates on energy efficient homes with Green Mortgage.",
+              },
+              {
+                image: card2,
+                title: "Switch Mortgage",
+                description:
+                  "Make the switch as quickly and easily as possible with us.",
+              },
+            ].map((feat, idx) => (
+              <div className="col-md-6 col-lg-3 d-flex" key={idx}>
+                <FeatureCard {...feat} className="flex-fill " />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* About section */}
-      <section className="py-5 about-section">
+      {/* <section className="py-5 about-section bg-alpha">
         <div className="container">
-          <h3>About Easy Mortgage</h3>
-          <p>
+          <h2 className="h1 fs-semibold white">About Easy Mortgage</h2>
+          <p className="lead text-black fs-normal">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
             risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
             nec, ultricies sed, dolor. Cras elementum ultrices diam.
@@ -82,7 +90,32 @@ export default function Home() {
             className="img-fluid rounded"
           />
         </div>
+      </section> */}
+
+      <section className="py-7 cta-section bg-alpha-gradient">
+        <div className="container-xxl">
+          <div className="row gy-4 gx-5 align-items-center">
+            <div className="col-md-6">
+              <div className="content-container pe-lg-5">
+                <h1 className="white fs-semibold mb-3">
+                  Start Your Mortgage Journey
+                </h1>
+                <p className="lead fs-light white">
+                  See how much you can borrow with our easy-to-use calculator.
+                </p>
+
+                <Link to="/calculator" className="btn-circle alpha">
+                  Calculate Now
+                </Link>
+              </div>
+            </div>
+            <div className="col-md-6">
+              <img className="post-thumbnail" src={girlInRed}></img>
+            </div>
+          </div>
+        </div>
       </section>
+      <Footer />
     </div>
   );
 }

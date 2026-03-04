@@ -12,11 +12,11 @@ export default function Hero() {
                 Simply better
               </h5>
               <h1 className="display-2 text-primary h-font">Mortgages </h1>
-              <p className="lead">
+              <p className="lead fs-4">
                 For your first home, or your next, start your search today with
                 PTSB
               </p>
-              <Link className="btn-circle">Let's Go</Link>
+              <Link className="btn-circle dark">Let's Go</Link>
             </div>
           </div>
         </div>

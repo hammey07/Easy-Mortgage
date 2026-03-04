@@ -1,8 +1,12 @@
 // Navbar styles
 .navbar-custom {
+  color: var(--white);
+  margin-top: 0 !important;
   padding-top: 24px !important;
   padding-bottom: 24px !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--alpha);
+  background: linear-gradient(345deg, #020e10, #07272d) !important;
 
   .brand-text {
     font-family:
@@ -43,11 +47,4 @@
       border-bottom-color: var(--primary) !important;
     }
   }
-}
-
-.navbar {
-  color: var(--white);
-  margin-top: 0 !important;
-  background: #07272d !important;
-  padding: 0;
 }

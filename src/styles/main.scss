@@ -1,8 +1,152 @@
 // Main stylesheet that imports partials
-@import "partials/_global.scss";
+// @import "partials/_global.scss";
 @import "partials/_navbar.scss";
 @import "partials/_sections.scss";
 @import "partials/_button.scss";
 @import "partials/_home.scss";
+@import "partials/_footer.scss";
 
-// You can add more partials below as needed
+img {
+  max-width: 100%;
+}
+
+.py-6 {
+  padding-top: 4rem !important;
+  padding-bottom: 4rem !important;
+}
+.py-7 {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+.py-8 {
+  padding-top: 6rem !important;
+  padding-bottom: 6rem !important;
+}
+.py-9 {
+  padding-top: 7rem !important;
+  padding-bottom: 7rem !important;
+}
+
+.px-6 {
+  padding-left: 4rem !important;
+  padding-right: 4rem !important;
+}
+.px-7 {
+  padding-left: 5rem !important;
+  padding-right: 5rem !important;
+}
+.px-8 {
+  padding-left: 6rem !important;
+  padding-right: 6rem !important;
+}
+.px-9 {
+  padding-left: 7rem !important;
+  padding-right: 7rem !important;
+}
+
+.p-6 {
+  padding: 4rem !important;
+}
+.p-7 {
+  padding: 5rem !important;
+}
+.p-8 {
+  padding: 6rem !important;
+}
+.p-9 {
+  padding: 7rem !important;
+}
+.container-xxl,
+.container-xl {
+  padding-right: 30px !important;
+  padding-left: 30px !important;
+}
+
+.post-thumbnail {
+  border-radius: 30px;
+}
+
+.h-font {
+  font-family: var(--heading-font);
+}
+.b-font {
+  font-family: var(--body-font);
+}
+
+body {
+  font-family: var(--body-font);
+  font-weight: 400;
+}
+
+img {
+  max-width: 100%;
+}
+
+.alpha {
+  color: var(--alpha);
+}
+
+.beta {
+  color: var(--beta);
+}
+.charlie {
+  color: var(--charlie);
+}
+
+.delta {
+  color: var(--delta);
+}
+
+.white {
+  color: var(--white);
+}
+
+.fs-bold {
+  font-weight: bold;
+}
+
+.fs-light {
+  font-weight: 300;
+}
+.fs-normal {
+  font-weight: 400;
+}
+.fs-medium {
+  font-weight: 500;
+}
+.fs-semibold {
+  font-weight: 600;
+}
+.fs-bold {
+  font-weight: 700;
+}
+.fs-extrabold {
+  font-weight: 800;
+}
+
+.bg-alpha {
+  background-color: var(--alpha);
+}
+.bg-beta {
+  background-color: var(--beta);
+}
+.bg-charlie {
+  background-color: var(--charlie) !important;
+}
+.bg-delta {
+  background-color: var(--delta);
+}
+
+.bg-alpha-gradient {
+  // background: linear-gradient(
+  //   56deg,
+  //   rgba(197, 40, 61, 1) 0%,
+  //   rgba(158, 30, 47, 1) 100%
+  // );
+  background: #c5283d;
+  background: linear-gradient(
+    56deg,
+    rgba(197, 40, 61, 1) 0%,
+    rgba(148, 27, 43, 1) 100%
+  );
+}

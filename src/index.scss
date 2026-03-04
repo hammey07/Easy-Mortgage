@@ -1,44 +1,51 @@
+@import "bootstrap/dist/css/bootstrap.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&display=swap");
-/* Bootstrap spacing override (affects utilities like p-*, m-*) */
+
+/* global variables and Bootstrap overrides */
 :root {
-  // Color Variables
-  --spacer: 4rem;
   --white: #ffffff;
-  --primary: #a7233a;
-  --secondary: #666666;
+  --alpha: #c5283d;
+  --beta: #0a210f;
+  --delta: #f3a712;
+  --charlie: #09814a;
   --disabled: #e6e6e6;
   --primary-dark: #001220;
-  // Typography
   --heading-font: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
   --body-font: "Roboto", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Bootstrap overrides */
+  --bs-primary: var(--alpha);
+  --bs-secondary: var(--beta);
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
 }
 
-body {
-  font-family: var(--body-font);
-  color: var(--color-text-primary);
-  background-color: var(--color-background);
-  margin: 0;
-  padding: 0;
-  font-size: var(--font-size-body);
+/* Helper fallback classes */
+.text-primary {
+  color: var(--bs-primary) !important;
+}
+.text-secondary {
+  color: var(--bs-secondary) !important;
 }
 
-// Heading Styles
+/* headings inherit color */
+.display-1,
+.display-2,
+.display-3,
+.display-4,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6,
-.display-1,
-.display-2,
-.display-3,
-.display-4 {
+h6 {
+  color: inherit;
   font-family: var(--heading-font);
-  line-height: 1.2;
-  margin-top: 0;
-  margin-bottom: 1rem;
 }
 
-/* Project styles (partials) */
 @import "./styles/main.scss";
