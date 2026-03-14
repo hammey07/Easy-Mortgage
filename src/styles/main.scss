@@ -1,10 +1,12 @@
 // Main stylesheet that imports partials
-// @import "partials/_global.scss";
-@import "partials/_navbar.scss";
-@import "partials/_sections.scss";
-@import "partials/_button.scss";
-@import "partials/_home.scss";
-@import "partials/_footer.scss";
+// @import "partials/global.scss";
+@import "partials/navbar.scss";
+@import "partials/sections.scss";
+@import "partials/button.scss";
+@import "partials/home.scss";
+@import "partials/calculator.scss";
+@import "partials/pages.scss";
+@import "partials/footer.scss";
 
 img {
   max-width: 100%;

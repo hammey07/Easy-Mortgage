@@ -106,24 +106,11 @@ export default function BorrowingCalculator() {
 
   return (
     <>
-      <header>
-        <div className="header-container">
-          <Container>
-            <div className="header-content">
-              <h1 className="header-title">Easy Mortgage</h1>
-              <h3 className="">
-                Calculate your monthly payments and see how much you can borrow
-                in minutes.
-              </h3>
-            </div>
-          </Container>
-        </div>
-      </header>
-      <div className="section-body">
+      <div className="section-body" id="calculator">
         <div className="section-container">
           <div className="section-header">
             <h2 className="calc-title">Mortgage Calculator</h2>
-            <p className="calc-subtitle lead">
+            <p className="calc-subtitle text-white lead">
               Get an estimate of your borrowing capacity
             </p>
           </div>

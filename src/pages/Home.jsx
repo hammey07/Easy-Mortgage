@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
 
       {/* CTA section */}
-      <section className="py-7 cta-section">
+      <section id="cta-section" className="py-7 cta-section">
         <div className="container-xxl">
           <div className="row gx-5 align-items-center">
             <div className="order-2 order-md-0  col-md-6">
@@ -38,7 +38,7 @@ export default function Home() {
       </section>
 
       {/* Features section */}
-      <section className="py-8 features-section">
+      <section id="featured-section" className="py-8 features-section">
         <div className="container-xxl">
           <div className="row gy-5 gx-5 align-items-stretch">
             {[
@@ -92,7 +92,10 @@ export default function Home() {
         </div>
       </section> */}
 
-      <section className="py-7 cta-section bg-alpha-gradient">
+      <section
+        id="cta-section-2"
+        className="py-7 cta-section bg-alpha-gradient"
+      >
         <div className="container-xxl">
           <div className="row gy-4 gx-5 align-items-center">
             <div className="col-md-6">

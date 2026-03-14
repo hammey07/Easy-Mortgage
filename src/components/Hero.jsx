@@ -1,3 +1,4 @@
+import { HashLink } from "react-router-hash-link";
 import heroImage from "../assets/hero-happy-fam.jpg";
 import { Link } from "react-router-dom";
 
@@ -7,7 +8,7 @@ export default function Hero() {
       <div className="hero-section text-white">
         <div className="px-4 px-md-5 container-xxl">
           <div className="row g-0 h-100">
-            <div className="col-lg-4 d-flex flex-column justify-content-center py-5">
+            <div className="col-md-4 d-flex flex-column justify-content-center py-5">
               <h5 className="mb-0 h-font text-white text-uppercase">
                 Simply better
               </h5>
@@ -16,7 +17,13 @@ export default function Hero() {
                 For your first home, or your next, start your search today with
                 PTSB
               </p>
-              <Link className="btn-circle dark">Let's Go</Link>
+              <HashLink
+                title="Let's Go | Easy Mortgage"
+                to="#cta-section"
+                className="btn-circle dark"
+              >
+                Let's Go
+              </HashLink>
             </div>
           </div>
         </div>

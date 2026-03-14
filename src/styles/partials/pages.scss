@@ -1,0 +1,37 @@
+.calculator-page {
+  .section-body {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    background: linear-gradient(345deg, #020e10, #07272d);
+
+    .section-container {
+      background: linear-gradient(
+        56deg,
+        rgb(197, 40, 61) 0%,
+        rgb(148, 27, 43) 100%
+      );
+      max-width: 800px;
+      margin: 0 auto;
+      color: white;
+      padding: 0 20px;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      .section-header {
+        .calc-title {
+          margin-bottom: 8px;
+          color: white;
+          text-align: center;
+        }
+
+        .calc-subtitle {
+          // color: #666;
+          margin-bottom: 32px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
