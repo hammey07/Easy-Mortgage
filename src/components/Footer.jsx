@@ -29,6 +29,7 @@ export default function () {
           {/* Column 2 */}
           <div className="col-sm-6 col-md-3 col-lg-3 mb-4">
             <h5 className="text-uppercase mb-3">Support</h5>
+            <hr className="opacity-75 alpha w-25"></hr>
             <ul className="list-unstyled">
               <li>
                 <a href="#" className="text-white text-decoration-none">
@@ -51,6 +52,7 @@ export default function () {
           {/* Column 3 */}
           <div className="col-sm-6 col-md-3 col-lg-3 mb-4">
             <h5 className="text-uppercase mb-3">Legal</h5>
+            <hr className="opacity-75 alpha w-25"></hr>
             <ul className="list-unstyled">
               <li>
                 <a href="#" className="text-white text-decoration-none">

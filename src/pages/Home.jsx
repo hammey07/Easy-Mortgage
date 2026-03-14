@@ -28,9 +28,9 @@ export default function Home() {
                   See how much you can borrow with our easy-to-use calculator.
                 </p>
 
-                <Link to="/calculator" className="btn-circle light">
+                <a href="/calculator" className="btn-circle light">
                   Calculate Now
-                </Link>
+                </a>
               </div>
             </div>
           </div>

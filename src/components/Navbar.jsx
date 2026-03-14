@@ -9,7 +9,7 @@ export default function Navigation() {
       data-bs-theme="dark"
       expand="lg"
       sticky="top"
-      className="navbar-custom px-4 px-md-5"
+      className="navbar-custom"
     >
       <div className="container-xxl px-0 px-md-4">
         <Link to="/" className="brand-text">
