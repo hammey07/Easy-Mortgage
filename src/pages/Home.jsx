@@ -107,7 +107,10 @@ export default function Home() {
                   See how much you can borrow with our easy-to-use calculator.
                 </p>
 
-                <Link to="/calculator" className="btn-circle alpha">
+                <Link
+                  to={`${process.env.PUBLIC_URL}/calculator`}
+                  className="btn-circle alpha"
+                >
                   Calculate Now
                 </Link>
               </div>
