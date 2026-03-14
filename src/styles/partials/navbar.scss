@@ -21,13 +21,9 @@
     text-decoration: none;
     transition: color 0.2s ease;
 
-    &:hover {
-      // color: #a7233a;
-    }
-
     .accent {
       font-weight: 400;
-      color: #a7233a;
+      color: var(--alpha);
     }
   }
 
